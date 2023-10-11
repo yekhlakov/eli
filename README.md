@@ -36,7 +36,7 @@ eli->run("(call echo (iota 5))");
 
 - `(seq x y ...)` - evaluate all arguments in order. Return the last evaluated argument.
 - `(val x y ...)` - return `(x y ...)` as is without evaluating
-- `(def xi yi ...) - define `xi` to hold value of `yi` in global scope
+- `(def xi yi ...)` - define `xi` to hold value of `yi` in global scope
 - `(let xi yi ... z)` - evaluate `z` using names `xi` to hold values of `yi`
 - `(empty x)` - check if `x` is empty. `()`, `0`, `0.0` and empty string are empty
 - `(list x)` - check if `x` is a list

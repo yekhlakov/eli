@@ -446,7 +446,7 @@ namespace maxy
 						// names should only be atoms
 						if (!VALUES(tree)[i]->is_atom()) continue;
 
-						std::lock_guard<std::mutex>(eli->symbol_mutex);
+						auto x = std::lock_guard<std::mutex>(eli->symbol_mutex);
 						eli->symbols[VALUES(tree)[i]->atom()->value] = EVAL_ARG(i + 1);
 					}
 
@@ -520,10 +520,10 @@ namespace maxy
 
 					for (auto param : a1->list()->values)
 					{
-						v.push_back(param->atom()->value);
+						v.push_back (param->to_string ());
 					}
 
-					return eli->new_list(funcptr->second(v));
+					return eli->new_list((*(funcptr->second)) (v));
 				};
 
 				// cmath proxy

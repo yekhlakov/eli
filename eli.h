@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <memory>
 #include <mutex>
+#include <ostream>
 
 namespace maxy
 {
