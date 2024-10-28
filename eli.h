@@ -167,13 +167,13 @@ namespace maxy
 					};
 
 					union {
-						double* dptr;
-						float* fptr;
-						long long* lptr;
-						unsigned long long* ulptr;
-						int* iptr;
-						unsigned int* uiptr;
-						bool* bptr;
+						volatile double* dptr;
+						volatile float* fptr;
+						volatile long long* lptr;
+						volatile unsigned long long* ulptr;
+						volatile int* iptr;
+						volatile unsigned int* uiptr;
+						volatile bool* bptr;
 					};
 
 					Type type;
@@ -181,13 +181,13 @@ namespace maxy
 					bool readonly;
 
 					ExtVar() : dptr{ nullptr }, type{ Type::Double }, components{ 0 }, readonly{ true } {}
-					ExtVar(double* ptr, size_t comp = 1, bool ro = false) : dptr{ ptr }, type{ Type::Double }, components{ comp }, readonly{ ro } {};
-					ExtVar(float* ptr, size_t comp = 1, bool ro = false) : fptr{ ptr }, type{ Type::Float }, components{ comp }, readonly{ ro } {};
-					ExtVar(long long* ptr, size_t comp = 1, bool ro = false) : lptr{ ptr }, type{ Type::Long }, components{ comp }, readonly{ ro } {};
-					ExtVar(unsigned long long* ptr, size_t comp = 1, bool ro = false) : ulptr{ ptr }, type{ Type::Ulong }, components{ comp }, readonly{ ro } {};
-					ExtVar(int* ptr, size_t comp = 1, bool ro = false) : iptr{ ptr }, type{ Type::Int }, components{ comp }, readonly{ ro } {};
-					ExtVar(unsigned int* ptr, size_t comp = 1, bool ro = false) : uiptr{ ptr }, type{ Type::Uint }, components{ comp }, readonly{ ro } {};
-					ExtVar(bool* ptr, size_t comp = 1, bool ro = false) : bptr{ ptr }, type{ Type::Bool }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile double* ptr, size_t comp = 1, bool ro = false) : dptr{ ptr }, type{ Type::Double }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile float* ptr, size_t comp = 1, bool ro = false) : fptr{ ptr }, type{ Type::Float }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile long long* ptr, size_t comp = 1, bool ro = false) : lptr{ ptr }, type{ Type::Long }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile unsigned long long* ptr, size_t comp = 1, bool ro = false) : ulptr{ ptr }, type{ Type::Ulong }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile int* ptr, size_t comp = 1, bool ro = false) : iptr{ ptr }, type{ Type::Int }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile unsigned int* ptr, size_t comp = 1, bool ro = false) : uiptr{ ptr }, type{ Type::Uint }, components{ comp }, readonly{ ro } {};
+					ExtVar(volatile bool* ptr, size_t comp = 1, bool ro = false) : bptr{ ptr }, type{ Type::Bool }, components{ comp }, readonly{ ro } {};
 				};
 
 				// exceptions
@@ -253,7 +253,7 @@ namespace maxy
 
 				// Register an application variable to be accessible from Lisp
 				template<typename Ty>
-				void var(const char* name, Ty* ptr, size_t components = 1, bool readonly = false)
+				void var(const char* name, volatile Ty* ptr, size_t components = 1, bool readonly = false)
 				{
 					variables[name] = ExtVar{ ptr, components, readonly };
 				}

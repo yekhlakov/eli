@@ -117,3 +117,6 @@ may alter the desired results (see `test.cpp` for an example).
 
 The `get`, `set` and `call` operations are *not* explicitly thread-safe.
 
+The thread-safety will be improved in the future.
+
+
